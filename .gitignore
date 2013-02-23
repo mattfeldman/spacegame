@@ -1,0 +1,9 @@
+*.sln
+*.userprefs
+*.csproj
+*.pidb
+*.unityproj
+.DS_Store
+SpaceGame/Library
+SpaceGame/obj
+SpaceGame/Temp
