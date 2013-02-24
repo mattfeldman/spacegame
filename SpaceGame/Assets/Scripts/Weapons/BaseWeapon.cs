@@ -17,17 +17,14 @@ public class BaseWeapon : MonoBehaviour
 
 	public void Update()
 	{
-		Debug.Log("update " + this.CooldownLeft);
 		if (this.CooldownLeft > 0)
 		{
-			Debug.Log(Time.deltaTime);
 			this.CooldownLeft -= Time.deltaTime;
 		}
 	}
 
 	public GameObject Fire(Vector3 position)
 	{
-		Debug.Log("fire: " + this.CooldownLeft);
 		if (this.CooldownLeft <= 0)
 		{
 			this.CooldownLeft = this.CooldownTime;

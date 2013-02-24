@@ -11,15 +11,13 @@ public class PlayerMovementScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		// I'm not really sure why Start and Update aren't being called on the Weapon, but I'll just call them here for now
-	    Weapon.Start();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-	    Weapon.Update();
-	    rigidbody.transform.position += Vector3.right * Input.GetAxis("Horizontal") * 0.5f;
+	    rigidbody.transform.position += Vector3.right * Input.GetAxis("Horizontal") * Time.deltaTime * 10;
 
 		if (rigidbody.transform.position.x < MinX)
 		{
