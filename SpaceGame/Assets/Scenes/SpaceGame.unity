@@ -3005,6 +3005,14 @@ Prefab:
       propertyPath: RightJetParticle
       value: 
       objectReference: {fileID: 439751171}
+    - target: {fileID: 11400000, guid: e6362878ec1eb4245b20801270e1da66, type: 2}
+      propertyPath: LeftJetParticleSystem
+      value: 
+      objectReference: {fileID: 175972419}
+    - target: {fileID: 11400000, guid: e6362878ec1eb4245b20801270e1da66, type: 2}
+      propertyPath: RightJetParticleSystem
+      value: 
+      objectReference: {fileID: 439751171}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e6362878ec1eb4245b20801270e1da66, type: 2}
   m_RootGameObject: {fileID: 1278294647}
@@ -3133,9 +3141,9 @@ Transform:
   m_LocalPosition: {x: -16.8986855, y: 0, z: -7.98378181}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 175972420}
   - {fileID: 1139812737}
   - {fileID: 439751172}
-  - {fileID: 175972420}
   m_Father: {fileID: 0}
 --- !u!54 &1278294652
 Rigidbody:
@@ -3167,8 +3175,8 @@ MonoBehaviour:
   MinX: -15
   MaxX: 15
   Weapon: {fileID: 1866091453}
-  LeftJetParticle: {fileID: 175972419}
-  RightJetParticle: {fileID: 439751171}
+  LeftJetParticleSystem: {fileID: 175972419}
+  RightJetParticleSystem: {fileID: 439751171}
 --- !u!1 &1333343054
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,11 +1,9 @@
-*.sln
+
 *.exe
 *.pdb
 *.suo
 *.userprefs
-*.csproj
 *.pidb
-*.unityproj
 .DS_Store
 SpaceGame/Library
 SpaceGame/obj
