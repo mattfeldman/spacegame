@@ -7,7 +7,8 @@ public class PlayerMovementScript : MonoBehaviour
 	public float MaxX;
 
 	public BaseWeapon Weapon;
-
+	public ParticleSystem LeftJetParticleSystem;
+	public ParticleSystem RightJetParticleSystem;
     // Use this for initialization
     void Start()
     {
@@ -17,21 +18,26 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-	    rigidbody.transform.position += Vector3.right * Input.GetAxis("Horizontal") * Time.deltaTime * 10;
+		var rotation =  Input.GetAxis("Horizontal") * Time.deltaTime * 100;
+	    var thrust = Input.GetAxis("Vertical") ;//> 0 ? Input.GetAxis("Vertical") : 0;
 
-		if (rigidbody.transform.position.x < MinX)
-		{
-			transform.position = new Vector3(MinX, transform.position.y, transform.position.z);
-		}
-		if (transform.position.x > MaxX)
-		{
-			transform.position = new Vector3(MaxX, transform.position.y, transform.position.z);
-		}
+		rigidbody.AddTorque(Vector3.up*rotation);
+		rigidbody.AddRelativeForce(Vector3.forward*thrust*10,ForceMode.Force);
+
+
+	    if (rotation > 0)
+	    {
+		    LeftJetParticleSystem.Emit(5);
+	    }
+	    if (rotation < 0)
+	    {
+		    RightJetParticleSystem.Emit(5);
+	    }
 
 		if (Input.GetButton("Jump"))
 		{
 			Fire();
-		}
+		}		
     }
 
 	private void Fire()
