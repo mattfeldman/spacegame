@@ -174,30 +174,6 @@ public class NetworkController : MonoBehaviour
 				}
 			}
 		}
-		/*  Don't extrapolate here, just use the physics and BasicMovement to do it
-				// Use extrapolation
-				else
-				{
-					State latest = m_BufferedState[0];
-            
-					float extrapolationLength = (float)(interpolationTime - latest.timestamp);
-					// Don't extrapolation for more than 500 ms, you would need to do that carefully
-					if (extrapolationLength < m_ExtrapolationLimit)
-					{
-						float axisLength = extrapolationLength * latest.angularVelocity.magnitude * Mathf.Rad2Deg;
-						Quaternion angularRotation = Quaternion.AngleAxis(axisLength, latest.angularVelocity);
-                
-						transform.position = latest.pos + latest.velocity * extrapolationLength;
-						transform.rotation = angularRotation * latest.rot;
-						rigidbody.velocity = latest.velocity;
-						rigidbody.angularVelocity = latest.angularVelocity;
-						BasicMovement sm = GetComponent<BasicMovement>();   
-						sm.forward = latest.forward;
-						sm.strafe = latest.strafe;
-						sm.rotate = latest.rotate;
-					}
-				}
-		*/
 	}
 
 	Vector3 Vector3CubicInterpolate(

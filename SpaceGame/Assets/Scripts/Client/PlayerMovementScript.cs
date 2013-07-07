@@ -46,11 +46,6 @@ public class PlayerMovementScript : MonoBehaviour
 	{
 		_owner = player;
 		
-		if(Network.isClient)
-		{
-			Destroy(rigidbody);
-		}
-
 		if (Network.player == _owner.Value)
 		{
 			enabled = true;
