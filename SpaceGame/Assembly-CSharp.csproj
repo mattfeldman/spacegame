@@ -46,12 +46,13 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Bullets\BaseBullet.cs" />
      <Compile Include="Assets\Scripts\CameraScript.cs" />
-     <Compile Include="Assets\Scripts\Client\PlayerManagerClient.cs" />
+     <Compile Include="Assets\Scripts\Client\PlayerMovementScript.cs" />
      <Compile Include="Assets\Scripts\DestroyerScript.cs" />
      <Compile Include="Assets\Scripts\EnemyManager.cs" />
      <Compile Include="Assets\Scripts\EnemyScript.cs" />
-     <Compile Include="Assets\Scripts\PlayerMovementScript.cs" />
      <Compile Include="Assets\Scripts\Server\PlayerManagerServer.cs" />
+     <Compile Include="Assets\Scripts\Server\PlayerMovementServer.cs" />
+     <Compile Include="Assets\Scripts\Shared\NetworkController.cs" />
      <Compile Include="Assets\Scripts\UI\MenuScript.cs" />
      <Compile Include="Assets\Scripts\Weapons\BaseWeapon.cs" />
   </ItemGroup>

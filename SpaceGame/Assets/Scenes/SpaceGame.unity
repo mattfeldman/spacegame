@@ -418,7 +418,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 715328001}
-  - 114: {fileID: 715328002}
+  - 114: {fileID: 715328003}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -437,7 +437,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!114 &715328002
+--- !u!114 &715328003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 715328000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4da4e0f6a17826042a2d175370b9714b, type: 3}
+  m_Script: {fileID: 11500000, guid: a77c562fa9addc641a735ae6eeec770c, type: 3}
   m_Name: 
   PlayerPrefab: {fileID: 100000, guid: e6362878ec1eb4245b20801270e1da66, type: 2}
 --- !u!1001 &849619831

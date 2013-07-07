@@ -9,37 +9,22 @@ public class PlayerMovementScript : MonoBehaviour
 	public BaseWeapon Weapon;
 	public ParticleSystem LeftJetParticleSystem;
 	public ParticleSystem RightJetParticleSystem;
+
+	private NetworkPlayer? _owner;
+
     // Use this for initialization
     void Start()
     {
-
+		
     }
 
     // Update is called once per frame
     void Update()
     {
-	    if (networkView.isMine)
+	    if (_owner.HasValue && _owner.Value == Network.player)
 	    {
-		    var rotation = Input.GetAxis("Horizontal")*Time.deltaTime*100;
-		    var thrust = Input.GetAxis("Vertical"); //> 0 ? Input.GetAxis("Vertical") : 0;
-
-		    rigidbody.AddTorque(Vector3.up*rotation);
-		    rigidbody.AddRelativeForce(Vector3.forward*thrust*10, ForceMode.Force);
-
-
-		    if (rotation > 0)
-		    {
-			    LeftJetParticleSystem.Emit(5);
-		    }
-		    if (rotation < 0)
-		    {
-			    RightJetParticleSystem.Emit(5);
-		    }
-
-		    if (Input.GetButton("Jump"))
-		    {
-			    Fire();
-		    }
+		    networkView.RPC ("Rotate", RPCMode.Server, Input.GetAxis("Horizontal"));
+		    networkView.RPC ("Move", RPCMode.Server, Input.GetAxis("Vertical"));
 	    }
 	    else
 	    {
@@ -53,6 +38,23 @@ public class PlayerMovementScript : MonoBehaviour
 		if (firedBullet != null)
 		{
 			Physics.IgnoreCollision(firedBullet.collider, this.collider);
+		}
+	}
+
+	[RPC]
+	void SetOwner(NetworkPlayer player)
+	{
+		_owner = player;
+		
+		if(Network.isClient)
+		{
+			Destroy(rigidbody);
+		}
+
+		if (Network.player == _owner.Value)
+		{
+			enabled = true;
+			Camera.main.GetComponent<CameraScript>().Target = this.gameObject;
 		}
 	}
 }
