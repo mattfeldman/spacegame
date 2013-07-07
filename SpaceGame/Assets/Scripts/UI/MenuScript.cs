@@ -72,7 +72,10 @@ public class MenuScript : MonoBehaviour
 
 	private void RunningInformation()
 	{
-		GUI.Label(new Rect(0, 0, 200, 20), String.Format("Ping: {0} FPS: {1}", Network.GetAveragePing(Network.connections[0]), _fps));
+		if(Network.connections.Length > 0)
+		{
+			GUI.Label(new Rect(0, 0, 200, 20), String.Format("Ping: {0} FPS: {1}", Network.GetAveragePing(Network.connections[0]), _fps));
+		}
 	}
 
 	private void RootMenu()

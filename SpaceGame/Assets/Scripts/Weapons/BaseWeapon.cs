@@ -27,8 +27,8 @@ public class BaseWeapon : MonoBehaviour
 	{
 		if (this.CooldownLeft <= 0)
 		{
-			this.CooldownLeft = this.CooldownTime;
-			var firedBullet = (GameObject)Instantiate(BulletPrefab, position, rotation);
+			this.CooldownLeft = 1;
+			var firedBullet = (GameObject)Network.Instantiate(BulletPrefab, position, rotation, 0);
 			return firedBullet;
 		}
 

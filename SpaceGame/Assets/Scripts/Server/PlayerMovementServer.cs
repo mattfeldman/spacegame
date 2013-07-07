@@ -20,7 +20,7 @@ public class PlayerMovementServer : MonoBehaviour {
 	{
 		var rotation = movementAmount*Time.deltaTime*100;
 		
-		 rigidbody.AddTorque(Vector3.up*rotation);
+		rigidbody.AddTorque(Vector3.up*rotation);
 	}
 	
 	[RPC]
@@ -28,5 +28,13 @@ public class PlayerMovementServer : MonoBehaviour {
 	{
 		var thrust = moveAmount; //> 0 ? Input.GetAxis("Vertical") : 0;
 		rigidbody.AddRelativeForce(Vector3.forward*thrust*10, ForceMode.Force);
+	}
+
+	[RPC]
+	void Fire()
+	{
+		var playerScript = GetComponent<PlayerMovementScript>();
+
+		playerScript.Weapon.Fire(transform.position, transform.rotation);
 	}
 }

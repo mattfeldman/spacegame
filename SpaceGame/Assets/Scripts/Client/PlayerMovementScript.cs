@@ -7,11 +7,9 @@ public class PlayerMovementScript : MonoBehaviour
 	public float MaxX;
 
 	public BaseWeapon Weapon;
-	public ParticleSystem LeftJetParticleSystem;
-	public ParticleSystem RightJetParticleSystem;
 
 	private NetworkPlayer? _owner;
-
+	
     // Use this for initialization
     void Start()
     {
@@ -27,7 +25,13 @@ public class PlayerMovementScript : MonoBehaviour
 		    var thrust = Input.GetAxis("Vertical");
 		    networkView.RPC ("Rotate", RPCMode.Server, rotation);
 		    networkView.RPC ("Move", RPCMode.Server, thrust);
-
+			
+			if(Input.GetButton("Jump"))
+			{
+				networkView.RPC ("Fire", RPCMode.Server);
+			}
+			
+			// attempt to predict movement by applying input locally
 			rigidbody.AddTorque(Vector3.up * rotation);
 			rigidbody.AddRelativeForce(Vector3.forward * thrust * 10, ForceMode.Force);
 	    }
@@ -36,15 +40,6 @@ public class PlayerMovementScript : MonoBehaviour
 		    this.enabled = false;
 	    }
     }
-
-	private void Fire()
-	{
-		var firedBullet = Weapon.Fire(transform.position, transform.rotation);
-		if (firedBullet != null)
-		{
-			Physics.IgnoreCollision(firedBullet.collider, this.collider);
-		}
-	}
 
 	[RPC]
 	void SetOwner(NetworkPlayer player)

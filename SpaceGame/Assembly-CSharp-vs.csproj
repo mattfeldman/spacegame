@@ -46,6 +46,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Bullets\BaseBullet.cs" />
      <Compile Include="Assets\Scripts\CameraScript.cs" />
+     <Compile Include="Assets\Scripts\Client\PlayerAnimationClient.cs" />
      <Compile Include="Assets\Scripts\Client\PlayerMovementScript.cs" />
      <Compile Include="Assets\Scripts\DestroyerScript.cs" />
      <Compile Include="Assets\Scripts\EnemyManager.cs" />

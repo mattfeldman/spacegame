@@ -55,6 +55,14 @@ public class PlayerManagerServer : MonoBehaviour
 	private void SpawnPlayer(NetworkPlayer player)
 	{
 		var playerObject = (GameObject)Network.Instantiate(PlayerPrefab, Vector3.zero, Quaternion.identity, 0);
+		var weaponPrefab = Resources.Load("SimpleWeapon");
+		var bullet = Resources.Load("SimpleBullet");
+		
+		var weapon = (GameObject)Network.Instantiate(weaponPrefab, Vector3.zero, Quaternion.identity, 0);
+		
+		((GameObject) weapon).GetComponent<BaseWeapon>().BulletPrefab = (GameObject)bullet;
+		
+		playerObject.GetComponent<PlayerMovementScript>().Weapon = weapon.GetComponent<BaseWeapon>();
 
 		_playerLookup.Add(player, playerObject);
 
