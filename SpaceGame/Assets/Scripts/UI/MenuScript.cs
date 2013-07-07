@@ -18,6 +18,10 @@ public class MenuScript : MonoBehaviour
 	private String _serverPort;
 	private String _clientPort;
 
+	private int _frameCounter;
+	private float _timeCounter;
+	private float _fps;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -25,11 +29,23 @@ public class MenuScript : MonoBehaviour
 		_server = "127.0.0.1";
 		_serverPort = "25001";
 		_clientPort = "25001";
+
+		_timeCounter = 1;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update ()
+	{
+		_timeCounter -= Time.deltaTime;
+		_frameCounter++;
+
+		if (_timeCounter < 0)
+		{
+			_fps = _frameCounter;
+			_frameCounter = 0;
+			_timeCounter = 1;
+		}
+
 	}
 
 	private void OnGUI()
@@ -46,11 +62,17 @@ public class MenuScript : MonoBehaviour
 				ClientMenu();
 				break;
 			case MenuState.Running:
+				RunningInformation();
 				break;
 			default:
 				throw new ArgumentOutOfRangeException();
 		}
 		
+	}
+
+	private void RunningInformation()
+	{
+		GUI.Label(new Rect(0, 0, 200, 20), String.Format("Ping: {0} FPS: {1}", Network.GetAveragePing(Network.connections[0]), _fps));
 	}
 
 	private void RootMenu()
