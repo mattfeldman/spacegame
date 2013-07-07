@@ -18,31 +18,38 @@ public class PlayerMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		var rotation =  Input.GetAxis("Horizontal") * Time.deltaTime * 100;
-	    var thrust = Input.GetAxis("Vertical") ;//> 0 ? Input.GetAxis("Vertical") : 0;
-
-		rigidbody.AddTorque(Vector3.up*rotation);
-		rigidbody.AddRelativeForce(Vector3.forward*thrust*10,ForceMode.Force);
-
-
-	    if (rotation > 0)
+	    if (networkView.isMine)
 	    {
-		    LeftJetParticleSystem.Emit(5);
-	    }
-	    if (rotation < 0)
-	    {
-		    RightJetParticleSystem.Emit(5);
-	    }
+		    var rotation = Input.GetAxis("Horizontal")*Time.deltaTime*100;
+		    var thrust = Input.GetAxis("Vertical"); //> 0 ? Input.GetAxis("Vertical") : 0;
 
-		if (Input.GetButton("Jump"))
-		{
-			Fire();
-		}		
+		    rigidbody.AddTorque(Vector3.up*rotation);
+		    rigidbody.AddRelativeForce(Vector3.forward*thrust*10, ForceMode.Force);
+
+
+		    if (rotation > 0)
+		    {
+			    LeftJetParticleSystem.Emit(5);
+		    }
+		    if (rotation < 0)
+		    {
+			    RightJetParticleSystem.Emit(5);
+		    }
+
+		    if (Input.GetButton("Jump"))
+		    {
+			    Fire();
+		    }
+	    }
+	    else
+	    {
+		    this.enabled = false;
+	    }
     }
 
 	private void Fire()
 	{
-		var firedBullet = Weapon.Fire(transform.position);
+		var firedBullet = Weapon.Fire(transform.position, transform.rotation);
 		if (firedBullet != null)
 		{
 			Physics.IgnoreCollision(firedBullet.collider, this.collider);

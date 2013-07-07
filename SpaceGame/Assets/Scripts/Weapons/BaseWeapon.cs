@@ -23,12 +23,12 @@ public class BaseWeapon : MonoBehaviour
 		}
 	}
 
-	public GameObject Fire(Vector3 position)
+	public GameObject Fire(Vector3 position, Quaternion rotation)
 	{
 		if (this.CooldownLeft <= 0)
 		{
 			this.CooldownLeft = this.CooldownTime;
-			var firedBullet = (GameObject)Instantiate(BulletPrefab, position, Quaternion.identity);
+			var firedBullet = (GameObject)Instantiate(BulletPrefab, position, rotation);
 			return firedBullet;
 		}
 
