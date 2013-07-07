@@ -23,8 +23,13 @@ public class PlayerMovementScript : MonoBehaviour
     {
 	    if (_owner.HasValue && _owner.Value == Network.player)
 	    {
-		    networkView.RPC ("Rotate", RPCMode.Server, Input.GetAxis("Horizontal"));
-		    networkView.RPC ("Move", RPCMode.Server, Input.GetAxis("Vertical"));
+		    var rotation = Input.GetAxis("Horizontal");
+		    var thrust = Input.GetAxis("Vertical");
+		    networkView.RPC ("Rotate", RPCMode.Server, rotation);
+		    networkView.RPC ("Move", RPCMode.Server, thrust);
+
+			rigidbody.AddTorque(Vector3.up * rotation);
+			rigidbody.AddRelativeForce(Vector3.forward * thrust * 10, ForceMode.Force);
 	    }
 	    else
 	    {
